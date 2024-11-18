@@ -1,0 +1,3 @@
+Adafruit CircuitPython 9.2.0 on 2024-10-28; Seeed Xiao ESP32-C6 4MB Flash 512KB SRAM with ESP32-C6FH4
+Board ID:seeed_xiao_esp32c6
+UID:452340337042
