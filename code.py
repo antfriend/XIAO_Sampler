@@ -23,7 +23,7 @@ piez01 = pwmio.PWMOut(board.D1, frequency=40, duty_cycle=0)
 # Set the duty cycle to achieve 3 ms on time
 led.duty_cycle = duty_cycle_value
 piez00.duty_cycle = duty_cycle_value
-#piez01.duty_cycle = duty_cycle_value
+piez01.duty_cycle = duty_cycle_value
 
 # wifi
 for network in wifi.radio.start_scanning_networks():
@@ -44,8 +44,18 @@ print(" ")
 #         print("Found BLE device:", addr)
 # ble.stop_scan()
 
-
-# The PWM hardware handles the blinking; no need for a loop
 while True:
+    for network in wifi.radio.start_scanning_networks():
+        piez00.duty_cycle = 0
+        print(" ")
+        ssid = network.ssid
+        print("SSID:", ssid)
+        signal_strength = network.rssi
+        print("Signal Strength:", signal_strength)
+        piez01.duty_cycle = duty_cycle_value + signal_strength
+    wifi.radio.stop_scanning_networks()
+
+    piez00.duty_cycle = duty_cycle_value
+    
     pass
- # type: ignore
+ 
